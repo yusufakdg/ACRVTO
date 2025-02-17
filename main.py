@@ -16,7 +16,7 @@ bucket = client.bucket(bucket_name)
 
 # Load CSV data into a DataFrame
 try:
-    df = pd.read_csv(/Users/muhammedyusufakdag/Desktop/VTO/FİYAT_TEKLİFİ_ŞABLON.csv)
+    df = pd.read_csv(FİYAT_TEKLİFİ_ŞABLON.csv)
 except FileNotFoundError:
     df = pd.DataFrame()  # Initialize an empty DataFrame if file not found
 
