@@ -1,7 +1,9 @@
 fastapi
 uvicorn
 google-cloud-storage
-python-multipart
 openai
+python-multipart
 pandas
 pydantic
+aiofiles
+python-jose[cryptography] 
