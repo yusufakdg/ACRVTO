@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+google-cloud-storage
+openai
+python-multipart
+pandas
+pydantic
+aiofiles
+python-jose[cryptography] 
