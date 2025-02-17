@@ -2,4 +2,6 @@ fastapi
 uvicorn
 google-cloud-storage
 python-multipart
+openai
 pandas
+pydantic
