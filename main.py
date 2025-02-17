@@ -7,6 +7,9 @@ import json
 import pandas as pd
 from typing import List
 from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware 
 import tempfile
 from pathlib import Path
 
@@ -19,6 +22,23 @@ credentials = service_account.Credentials.from_service_account_info(service_acco
 client = storage.Client(credentials=credentials)
 bucket_name = os.getenv('GCS_BUCKET_NAME')
 bucket = client.bucket(bucket_name)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Mount the static directory
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+@app.get("/")
+async def read_root():
+    return FileResponse('static/index.html')
+
 
 class PriceOffer(BaseModel):
     customer_name: str
@@ -104,3 +124,4 @@ async def get_customer_offers(customer_name: str):
         return offers
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
